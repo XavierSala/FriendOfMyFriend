@@ -27,6 +27,9 @@ public class FacebookDAOPostgresSQL implements FacebookDAO {
 		conn = DriverManager.getConnection(jdbc, user, pass);
 	}
 
+	/**
+	 * @see FacebookDAO
+	 */
 	public List<Friend> getRandomNames(int numero) throws SQLException {
 		List<Friend> friends = new ArrayList<>();
 		PreparedStatement st = conn.prepareStatement(RANDOMFRIENDS);
@@ -44,6 +47,9 @@ public class FacebookDAOPostgresSQL implements FacebookDAO {
 		return friends;
 	}
 
+	/**
+	 * @see FacebookDAO
+	 */
 	public List<Friend> getMyFriends(Friend friend) throws SQLException {
 		List<Friend> friends = new ArrayList<>();
 		PreparedStatement st = conn.prepareStatement(MYFRIENDS);
@@ -62,6 +68,9 @@ public class FacebookDAOPostgresSQL implements FacebookDAO {
 		return friends;		
 	}
 
+	/**
+	 * @see FacebookDAO
+	 */
 	@Override
 	public Friend getFriend(String id) throws SQLException {
 		PreparedStatement st = conn.prepareStatement(GETFRIEND);
