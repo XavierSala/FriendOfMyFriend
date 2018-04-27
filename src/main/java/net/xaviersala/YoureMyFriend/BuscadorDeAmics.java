@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import net.xaviersala.YoureMyFriend.dao.FacebookDAO;
 import net.xaviersala.YoureMyFriend.model.Friend;
 
 public class BuscadorDeAmics {

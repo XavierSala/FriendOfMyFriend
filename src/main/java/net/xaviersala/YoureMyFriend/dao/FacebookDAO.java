@@ -1,4 +1,4 @@
-package net.xaviersala.YoureMyFriend;
+package net.xaviersala.YoureMyFriend.dao;
 
 import java.sql.SQLException;
 import java.util.List;

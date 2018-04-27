@@ -1,4 +1,4 @@
-package net.xaviersala.YoureMyFriend;
+package net.xaviersala.YoureMyFriend.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,8 +12,9 @@ import net.xaviersala.YoureMyFriend.model.Friend;
 
 public class FacebookDAOPostgresSQL implements FacebookDAO {
 
-	
 	final static String GETFRIEND = "SELECT p.id, p.nom, p.sexe FROM PERSONES p WHERE p.id = ?";
+	
+	// L'he hagut de fer ràpid i no torna un aleatòri... 
 	final static String RANDOMFRIENDS = "SELECT p.id, p.nom, p.sexe FROM PERSONES p "			                         
 			                          + " LIMIT ?";
 	final static String MYFRIENDS = "SELECT p.id, p.nom, p.sexe FROM AMICS a "
