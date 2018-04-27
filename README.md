@@ -40,5 +40,5 @@ Desenvolupeu un programa que donat un usuari “friend” us digui quants amics 
         Friend: Òscar Llach Ingla
         --> Té : Té 0 amics
 
-        Friend: Ramona Isern Pelegrí 1
+        Friend: Ramona Isern Pelegrí
         --> Té : 1511 amics
