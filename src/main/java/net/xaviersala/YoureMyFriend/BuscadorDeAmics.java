@@ -66,7 +66,6 @@ public class BuscadorDeAmics {
 		for(Friend f: nousAmics) {					
 			futursAmics.addAll(dades.getMyFriends(f)
 					.stream()
-					.filter(it -> it.getSexe() == f.getSexe())
 					.filter(it -> !amics.contains(it))
 					.collect(Collectors.toList()));				
 		}
