@@ -34,24 +34,18 @@ public class BuscadorDeAmics {
 	 */
 	public Set<Friend> getAmicsDe(Friend candidat) throws SQLException {
 		
-		Set<Friend> amics = new HashSet<Friend>(); 
-
-		
+		Set<Friend> amics = new HashSet<Friend>(); 		
 		List<Friend>  nousAmics = new ArrayList<>();
+		
 		nousAmics.add(candidat);
 		
 		while(nousAmics.size() > 0) {
 						
 			// Comprova si els amics dels amics (nousAmics) són amics (i del sexe correcte)
-			List<Friend> futursAmics = buscaFutursAmics(candidat, amics, nousAmics);
-
-			if (!futursAmics.isEmpty()) {
-				amics.addAll(futursAmics);
-			}
-			
-			// Ara he de mirar els amics dels futurs amics
-			nousAmics = futursAmics;	
-			
+			nousAmics = buscaAmicsDelsAmics(candidat, amics, nousAmics);
+			if (!nousAmics.isEmpty()) {
+				amics.addAll(nousAmics);
+			}			
 			LOG.info(amics.size() + " ->  Ara tinc " + nousAmics.size() + "amics nous");
 		}
 							
@@ -60,34 +54,26 @@ public class BuscadorDeAmics {
 	}
 
 	/**
-	 * Mira els amics dels amics per veure si poden ser amics
+	 * Mira els amics dels amics per veure si poden ser amics i de pas en treu els que
+	 * ja n'eren.
 	 * @param candidat persona original
 	 * @param amics Llista d'amics actuals
 	 * @param nousAmics Llista dels nous amics dels que s'han de trobar més amics 
 	 * @return Llista amb els nous amics trobats.
 	 * @throws SQLException
 	 */
-	private List<Friend> buscaFutursAmics(Friend candidat, Set<Friend> amics, List<Friend> nousAmics)
+	private List<Friend> buscaAmicsDelsAmics(Friend candidat, Set<Friend> amics, List<Friend> nousAmics)
 			throws SQLException {
 		
 		List<Friend> futursAmics = new ArrayList<>();
 		for(Friend f: nousAmics) {					
-			for (Friend possibleAmic: dades.getMyFriends(f)
+			futursAmics.addAll(dades.getMyFriends(f)
 					.stream()
 					.filter(it -> it.getSexe() == candidat.getSexe())
-					.collect(Collectors.toList())) {
-				
-				if (isUnNouAmic(possibleAmic, amics)) {
-					futursAmics.add(possibleAmic);
-				}
-			}				    									
+					.filter(it -> !amics.contains(it))
+					.collect(Collectors.toList()));				
 		}
 		return futursAmics;
-	}
-
-
-	private boolean isUnNouAmic(Friend possibleAmic, Set<Friend> amics) {
-		return !amics.contains(possibleAmic);
 	}
 	
 }
