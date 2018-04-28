@@ -35,18 +35,17 @@ public class BuscadorDeAmics {
 	public Set<Friend> getAmicsDe(Friend candidat) throws SQLException {
 		
 		Set<Friend> amics = new HashSet<Friend>(); 		
-		List<Friend>  nousAmics = new ArrayList<>();
+		List<Friend>  darrersAmics = new ArrayList<>();
 		
-		nousAmics.add(candidat);
+		darrersAmics.add(candidat);
 		
-		while(nousAmics.size() > 0) {
+		while(darrersAmics.size() > 0) {
 						
-			// Comprova si els amics dels amics (nousAmics) són amics (i del sexe correcte)
-			nousAmics = buscaAmicsDelsAmics(candidat, amics, nousAmics);
-			if (!nousAmics.isEmpty()) {
-				amics.addAll(nousAmics);
+			darrersAmics = buscaNousAmicsEntreElsAmicsDelsAmics(darrersAmics, amics);
+			if (!darrersAmics.isEmpty()) {
+				amics.addAll(darrersAmics);
 			}			
-			LOG.info(amics.size() + " ->  Ara tinc " + nousAmics.size() + "amics nous");
+			LOG.info(amics.size() + " ->  Ara tinc " + darrersAmics.size() + "amics nous");
 		}
 							
 		return amics;
@@ -54,22 +53,20 @@ public class BuscadorDeAmics {
 	}
 
 	/**
-	 * Mira els amics dels amics per veure si poden ser amics i de pas en treu els que
-	 * ja n'eren.
-	 * @param candidat persona original
-	 * @param amics Llista d'amics actuals
+	 * Mira els nous amics aconseguits per veure si troba nous amics.
 	 * @param nousAmics Llista dels nous amics dels que s'han de trobar més amics 
+	 * @param amics Llista d'amics actuals
 	 * @return Llista amb els nous amics trobats.
 	 * @throws SQLException
 	 */
-	private List<Friend> buscaAmicsDelsAmics(Friend candidat, Set<Friend> amics, List<Friend> nousAmics)
+	private List<Friend> buscaNousAmicsEntreElsAmicsDelsAmics(List<Friend> nousAmics, Set<Friend> amics)
 			throws SQLException {
 		
 		List<Friend> futursAmics = new ArrayList<>();
 		for(Friend f: nousAmics) {					
 			futursAmics.addAll(dades.getMyFriends(f)
 					.stream()
-					.filter(it -> it.getSexe() == candidat.getSexe())
+					.filter(it -> it.getSexe() == f.getSexe())
 					.filter(it -> !amics.contains(it))
 					.collect(Collectors.toList()));				
 		}
