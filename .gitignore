@@ -4,3 +4,5 @@
 dependency-reduced-pom.xml
 output.txt
 target/
+__pycache__
+*~
