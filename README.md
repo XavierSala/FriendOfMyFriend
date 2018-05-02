@@ -19,8 +19,8 @@ La base de dades que tenen té aquesta estructura
 
 ![BDD](imatges/friends2.png)
 
-* Aquí teniu una còpia de seguretat de la base de dades per MySQL (aquí)
-* Una còpia de la base de dades per PostgreSQL es pot aconseguir (aquí)
+* Aquí teniu una còpia de seguretat de la base de dades per MySQL ([aquí](https://drive.google.com/file/d/14jAMbpXz2GDDQCGL6o4CYEvXEMBC9Om/view?usp=sharing))
+* Una còpia de la base de dades per PostgreSQL es pot aconseguir ([aquí](https://drive.google.com/file/d/1bevvZtLNnj91I1EYwCaG8vN8NKwi0Mf_/view?usp=sharing))
 * La relació d'amics indica que: **id1 és amic de id2** però no a l'inrevés.
 
 ### Opció 1
