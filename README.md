@@ -1,3 +1,5 @@
+#FpExperiencies #DawMp03Uf06 #Programació #BasesDeDades
+
 ## Els amics dels meus amics són els meus amics
 
 La gran xarxa social “Friends” (que encara no ho sabeu, però serà el que substituirà Facebook) us ha contractat perquè li dissenyeu un programa que digui si dos persones són amics o no seguint la regla de que els amics dels meus amics són amics meus (i els amics dels amics dels meus amics també ho són … ).
